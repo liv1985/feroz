@@ -36,37 +36,57 @@ const Cart = () => {
         {/* Cart Items */}
         <div className="lg:col-span-8 space-y-8">
           {cart.map((item) => (
-            <div key={item.id} className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 pb-8 border-b border-white/10">
-              <div className="w-32 aspect-[3/4] bg-white/5 overflow-hidden flex-shrink-0">
-                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+            <div key={item.cartItemId} className="flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 pb-8 border-b border-white/10">
+              <div className="w-32 aspect-[3/4] bg-white/5 overflow-hidden flex-shrink-0 relative group">
+                <Link to={`/product/${item.slug}`}>
+                  <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                </Link>
               </div>
               
               <div className="flex-grow text-center sm:text-left">
-                <div className="flex flex-col sm:flex-row justify-between mb-4">
-                  <h3 className="text-xl font-serif font-bold text-white">{item.name}</h3>
+                <div className="flex flex-col sm:flex-row justify-between mb-2">
+                  <Link to={`/product/${item.slug}`}>
+                    <h3 className="text-xl font-serif font-bold text-white hover:text-brand-red transition-colors">{item.name}</h3>
+                  </Link>
                   <p className="text-brand-silver font-bold mt-2 sm:mt-0">${item.price.toFixed(2)}</p>
                 </div>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mb-6">{item.category}</p>
+                
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 mb-6 text-[10px] uppercase tracking-widest">
+                  <p className="text-gray-500">{item.category}</p>
+                  <span className="text-gray-700">|</span>
+                  <p className="text-white">Size: <span className="font-bold">{item.selectedSize}</span></p>
+                  <span className="text-gray-700">|</span>
+                  <div className="flex items-center">
+                    <span className="text-white mr-2">Color:</span>
+                    <div 
+                      className="w-3 h-3 rounded-full mr-1.5" 
+                      style={{ backgroundColor: item.selectedColor.hex }}
+                    />
+                    <span className="text-white font-bold">{item.selectedColor.name}</span>
+                  </div>
+                </div>
                 
                 <div className="flex items-center justify-center sm:justify-between">
-                  <div className="flex items-center border border-white/20 px-3 py-1">
+                  <div className="flex items-center border border-white/20 px-3 py-1 bg-white/5">
                     <button 
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="text-gray-400 hover:text-white p-1"
+                      onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
+                      className="text-gray-400 hover:text-white p-1 transition-colors"
+                      aria-label="Decrease quantity"
                     >
                       <Minus size={14} />
                     </button>
                     <span className="mx-4 text-sm font-bold w-4 text-center">{item.quantity}</span>
                     <button 
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="text-gray-400 hover:text-white p-1"
+                      onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
+                      className="text-gray-400 hover:text-white p-1 transition-colors"
+                      aria-label="Increase quantity"
                     >
                       <Plus size={14} />
                     </button>
                   </div>
                   
                   <button 
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(item.cartItemId)}
                     className="text-gray-500 hover:text-brand-red flex items-center text-[10px] uppercase tracking-widest ml-8 transition-colors"
                   >
                     <Trash2 size={14} className="mr-1" />

@@ -1,7 +1,11 @@
 import Hero from '../components/Hero';
 import { Link } from 'react-router-dom';
+import { products } from '../data/products';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
+  const featuredProducts = products.slice(0, 3);
+
   return (
     <div>
       <Hero />
@@ -20,26 +24,8 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Mock Products for Home */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="relative aspect-[3/4] overflow-hidden bg-gray-900 mb-6">
-                  <div className="absolute inset-0 bg-brand-black/20 group-hover:bg-brand-black/0 transition-colors z-10" />
-                  <img 
-                    src={`https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=600&h=800&sig=${i}`} 
-                    alt="Latex Dress" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute bottom-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="bg-white text-brand-black px-4 py-2 text-xs font-bold uppercase tracking-widest">
-                      Quick View
-                    </button>
-                  </div>
-                </div>
-                <h3 className="text-lg font-serif font-bold text-white mb-1 group-hover:text-brand-red transition-colors">Nocturnal Elegance Dress</h3>
-                <p className="text-gray-400 text-sm mb-2 uppercase tracking-widest">Classic Black</p>
-                <p className="text-brand-silver font-bold">$349.00</p>
-              </div>
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </div>

@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10" />
         <div className="absolute inset-0 bg-brand-black/40 z-10" />
         {/* Placeholder image for hero */}
-        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80')] bg-cover bg-center" />
+        <div className="w-full h-full bg-[url('/images/hero-image.jpg')] bg-cover bg-center" />
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">

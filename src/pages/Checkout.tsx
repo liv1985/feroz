@@ -59,14 +59,17 @@ const Checkout = () => {
             
             <div className="space-y-6 mb-8 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
               {cart.map((item) => (
-                <div key={item.id} className="flex justify-between items-center">
+                <div key={item.cartItemId} className="flex justify-between items-center">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-16 bg-white/5 flex-shrink-0">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <h4 className="text-white text-xs font-bold uppercase tracking-wider">{item.name}</h4>
-                      <p className="text-gray-500 text-[10px]">Qty: {item.quantity}</p>
+                      <h4 className="text-white text-[10px] font-bold uppercase tracking-wider">{item.name}</h4>
+                      <p className="text-gray-500 text-[9px] uppercase tracking-widest mt-0.5">
+                        {item.selectedSize} / {item.selectedColor.name}
+                      </p>
+                      <p className="text-gray-500 text-[9px] mt-1">Qty: {item.quantity}</p>
                     </div>
                   </div>
                   <p className="text-white text-xs">${(item.price * item.quantity).toFixed(2)}</p>
