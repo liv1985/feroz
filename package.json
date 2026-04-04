@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "dev:coming-soon": "vite -c vite.coming-soon.config.ts",
-    "build:coming-soon": "vite build -c vite.coming-soon.config.ts",
+    "build:coming-soon": "vite build -c vite.coming-soon.config.ts && mv dist-coming-soon/coming-soon.html dist-coming-soon/index.html",
     "deploy": "npm run build:coming-soon && gh-pages -d dist-coming-soon"
   },
   "keywords": [],

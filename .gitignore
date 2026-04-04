@@ -26,3 +26,11 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Build output
+dist
+dist-ssr
+dist-coming-soon
+
+# Copyrighted assets
+/public/images/
