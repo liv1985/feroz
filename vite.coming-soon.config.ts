@@ -11,7 +11,7 @@ export default defineConfig({
   ],
   // Base path for GitHub Pages deployment. 
   // Change this if you use a custom domain or a different repo name.
-  base: '/feroz/', 
+  base: '/', 
   
   // Set to false to prevent the entire public directory from being included in the build
   // This ensures images or other store assets aren't accidentally exposed.
